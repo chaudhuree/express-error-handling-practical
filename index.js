@@ -1,30 +1,16 @@
 const express=require('express')
 const app = express()
+const userRouter=require('./routes/User')
+const Error=require('./middlewares/Error')
 
-// custom error handler class
-class ErrorHandler extends Error{
-  constructor(statusCode,message) {
-    super(message)
-    this.statusCode=statusCode
-  }
-  
-}
-
-app.get('/', (req, res,next) => {
-
-  return next(new ErrorHandler(404,'unauthorized'))
-
-})
+app.use('/users',userRouter)
 
 
-// com:
+
+
+
+// imp: 
 // custom error  handlers
-
-app.use((err, req, res, next) => {
-  err.statusCode=err.statusCode||500
-  err.message=err.message || 'internal server error'
-
-  res.status(err.statusCode).json({message:err.message})
-})
+app.use(Error)
 
 app.listen(5000,()=> console.log('listening on port 5000'))
