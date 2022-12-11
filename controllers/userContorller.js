@@ -7,7 +7,8 @@ const userController = async (req, res, next) => {
     // if (user) {
     //   return next(new ErrorHandler(401, 'user already exists'))
     // }
-    await User.create({ name: "sohan", email: "sohan@gmail.com" })
+    const newUser={ name: "kabir", email: "kabir@gmail.com" }
+    await User.create(newUser)
 
     res.status(200).json({ success: true, message: 'user created successfully' })
   } catch (error) {
