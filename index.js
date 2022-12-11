@@ -3,6 +3,10 @@ const app = express()
 const userRouter=require('./routes/User')
 const Error=require('./middlewares/Error')
 
+// import connectDB and use connect
+const {connectDB} = require('./config/database')
+connectDB()
+
 app.use('/users',userRouter)
 
 

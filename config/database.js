@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose =require('mongoose')
 
-export const connectDB = async () => {
+ const connectDB = async () => {
   try {
     const { connection } = await mongoose.connect(
       "mongodb://localhost:27017/expressErrorHandling"
@@ -11,3 +11,5 @@ export const connectDB = async () => {
     console.log(error);
   }
 };
+
+module.exports ={connectDB}
